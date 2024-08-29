@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer {
+  .roboto-mono-medium {
+    font-family: "Roboto Mono", monospace;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .form-control{
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    justify-items: start;
+  }
+
+  @media (max-width: 640px){
+    .form-control{
+      grid-template-columns: 100px 1fr;
+    }
+  }
+}
+
+body{
+  font-family: "Roboto Mono", monospace;
+  background-color: #e6e6e6;
+}
+
+
