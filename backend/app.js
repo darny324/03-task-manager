@@ -2,10 +2,13 @@ const express = require('express');
 const app = express();
 const Tasks = require('./routes/tasks');
 const connectDB = require('./db/database');
+const cors = require('cors');
 // require('dotenv').config();
 
 const port = 5000;
-
+app.use(cors({
+  origin: 'http://localhost:5173'
+}))
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use('/api/tasks', Tasks);
