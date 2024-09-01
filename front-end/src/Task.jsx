@@ -75,7 +75,7 @@ const Task = () => {
                 <div className='w-5 h-5 mr-4'>
                   <img src={task.completed ? completedIcon : ''} className='object-cover' />
                 </div>
-                <p className='flex-1'>{task.name}</p>
+                <p className={`flex-1 ${task.completed ? 'line-through': ''}`}>{task.name}</p>
                 
                 <Link to={`/edit?id=${task._id}`}><img src={editIcon} width={20} height={20} /></Link>
                 <button onClick={() => {handleDelete(task._id)}} className='mx-4'><img src={deleteIcon} width={16} height={16} /></button>

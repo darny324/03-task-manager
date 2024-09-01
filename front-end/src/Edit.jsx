@@ -7,12 +7,10 @@ const Edit = () => {
   const [searchParams] = useSearchParams();
   const [task, setTask] = useState(null);
   const [clicked, setClicked] = useState(false);
-  let timeoutId;
+  const [isError, setIsError] = useState(false);
+  
 
-  timeoutId = setTimeout(() => {
-    setClicked(false);
-  }, 2000);
-  clearTimeout(timeoutId);
+  
 
   const handleMount = async () => {
     const id = searchParams.get('id');
@@ -28,6 +26,14 @@ const Edit = () => {
   useEffect(() => {
     handleMount();
   }, []);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setClicked(false);
+      setIsError(false);
+    }, 2000);
+    return () => clearTimeout(timeoutId);
+  }, [clicked])
 
   const handleTaskChange = (e) => {
     setTask({
@@ -53,10 +59,13 @@ const Edit = () => {
         name: task.name, 
         completed: task.completed
       });
-      setClicked(true);
+      
       
     } catch (err) {
+      setIsError(true);
       console.log(err.message);
+    } finally {
+      setClicked(true);
     }
   }
 
@@ -98,7 +107,8 @@ const Edit = () => {
           </button>
           {
             clicked ? 
-            <p className='text-xl text-center'>Edited successfully</p>
+            <p className={`text-xl text-center ${isError ? 'text-red-500': 'text-[#4cf869]'}`}>
+              {isError ? 'Error, Please try again' : 'Edited successfully'}</p>
             : <></>
           }
           
