@@ -20,7 +20,7 @@ app.use(ErrorHandler);
 
 const startServer = async () => {
   try {
-    await connectDB(process.env.MONGO_URI);
+    await connectDB('mongodb+srv://Khant:Khant5461@cluster0.m9l0f.mongodb.net/myFirstDatabase?retryWrites=true&w=majority&appName=Cluster0');
     app.listen(port, () => {
       console.log(`Port Listening on ${port}...`);
     });
